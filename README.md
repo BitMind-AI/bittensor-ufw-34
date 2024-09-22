@@ -1,19 +1,17 @@
 # Bittensor UFW Configuration Tutorial
-Howdy folks, this is a quick update to mitigate naive DDOS attacks. 
 
-This guide will walk you through how to set up a firewall configuration for your Bittensor miner or validator using the provided script and PM2. This will help you keep your system secure while only allowing authorized connections. 
+Howdy folks, this is a quick update to mitigate naive DDOS attacks.
 
-This helps maintain a nicely firewalled network that does not allow anyone to query it unless they are querying from a validator registered and recorded on the metagraph. 
+This guide will walk you through how to set up a firewall configuration for your Bittensor miner or validator using the provided script and PM2. This will help you keep your system secure while only allowing authorized connections.
 
-By implementing firewall rules we all create a protected network that can only be accessed from the endpoints that we have recorded in the metagraph (miners and validators). This should also help stop random IPs from doing bad things, and ensure all things done are done via IPs recorded on the network. 
+This helps maintain a nicely firewalled network that does not allow anyone to query it unless they are querying from a validator registered and recorded on the metagraph.
 
->> Note:
-Having said this, validator owners should be careful now as you are the front facing entity, so you need to ensure you have rate limitations and proper firewalls (perhaps only accessible through your APIs) to stop attackers from DDOS-ing you. Miners should also stay vigilant. As the network grows, so will the number of people trying to break it.
+By implementing firewall rules we all create a protected network that can only be accessed from the endpoints that we have recorded in the metagraph (miners and validators). This should also help stop random IPs from doing bad things, and ensure all things done are done via IPs recorded on the network.
 
+> > Note:
+> > Having said this, validator owners should be careful now as you are the front facing entity, so you need to ensure you have rate limitations and proper firewalls (perhaps only accessible through your APIs) to stop attackers from DDOS-ing you. Miners should also stay vigilant. As the network grows, so will the number of people trying to break it.
 
 If you encounter any issues, please refer to the official [Bittensor documentation](https://github.com/opentensor/docs) or reach out to the community support at the [Discord](https://discord.com/channels/799672011265015819/1096187495667998790).
-
-
 
 ## Prerequisites
 
@@ -49,7 +47,7 @@ pip install validators # Install openvalidators (if running a validator)
 Start the script using PM2:
 
 ```bash
-pm2 start ufw.py --name ufw
+pm2 start ufw.py --name ufw -- --netuid 34
 ```
 
 This will start the UFW configuration script in the background, and PM2 will make sure it stays running.
@@ -85,4 +83,3 @@ You can now start your Bittensor miner or validator as usual. The UFW script wil
   ```bash
   pm2 restart ufw
   ```
-
